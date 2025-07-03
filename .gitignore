@@ -23,6 +23,9 @@ profile.cov
 # Go workspace file
 go.work
 go.work.sum
+# Go module files
+go.mod
+go.sum
 
 # env file
 .env
@@ -30,3 +33,4 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+.*.swp
