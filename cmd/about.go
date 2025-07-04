@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 David Ramage david.p.ramage@gmail.com
+Copyright © 2025 David Ramage
 */
 package cmd
 
