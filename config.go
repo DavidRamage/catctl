@@ -33,3 +33,15 @@ func getConf() (SerialConf, string) {
 	return sc, radio
 
 }
+
+func getCommand(radio string, cmd string) string {
+	viper.SetConfigName("commands")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("/usr/local/share/catctl/commands")
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
+		os.Exit(-1)
+	}
+	return viper.GetString(radio + "." + cmd)
+}
