@@ -3,9 +3,11 @@ on:
   workflow-dispatch
 jobs:
   build:
-		steps:
-		  - uses: actions/checkout@v4
-		  - uses: actions/setup-go@v5
-		    with:
-		      go-version: '^1.24.0' # The Go version to download (if necessary) and use.
-      - run: go mod init
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '^1.24.0' # The Go version to download (if necessary) and use.
+      - run: go mod init catctl
+      - run: go mod tidy
+      - run: go build catctl
