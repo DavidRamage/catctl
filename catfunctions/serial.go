@@ -1,4 +1,4 @@
-package main
+package catfunctions
 
 import (
 	"log"
@@ -17,7 +17,7 @@ type SerialConf struct {
 	dtr      bool
 }
 
-func sendCommand(cnf SerialConf, cmd string) string {
+func SendCommand(cnf SerialConf, cmd string) string {
 	mode := &serial.Mode{
 		BaudRate: cnf.baudRate,
 		Parity:   cnf.parity,

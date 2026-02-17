@@ -1,4 +1,4 @@
-package main
+package catfunctions
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"go.bug.st/serial"
 )
 
-func getConf() (SerialConf, string) {
+func GetConf() (SerialConf, string) {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("$HOME/.catctl")
@@ -34,7 +34,7 @@ func getConf() (SerialConf, string) {
 
 }
 
-func getCommand(radio string, cmd string) string {
+func GetCommand(radio string, cmd string) string {
 	viper.SetConfigName("commands")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("/usr/local/share/catctl/commands")
@@ -44,4 +44,9 @@ func getCommand(radio string, cmd string) string {
 		os.Exit(-1)
 	}
 	return viper.GetString(radio + "." + cmd)
+}
+
+func Dummy() {
+	// Dummy function to make go compiler happy
+	fmt.Println("dummy")
 }

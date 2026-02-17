@@ -1,10 +1,12 @@
 /*
-Copyright © 2025 David Ramage
+Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 */
 package cmd
 
 import (
 	"os"
+
+	"catctl/catfunctions"
 
 	"github.com/spf13/cobra"
 )
@@ -28,6 +30,7 @@ to quickly create a Cobra application.`,
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	err := rootCmd.Execute()
+	catfunctions.Dummy()
 	if err != nil {
 		os.Exit(1)
 	}

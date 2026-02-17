@@ -1,10 +1,11 @@
-/*
-Copyright © 2025 David Ramage david.p.ramage@gmail.com
-*/
 package main
 
-import "catctl/cmd"
+import (
+	"catctl/catfunctions"
+	"catctl/cmd"
+)
 
 func main() {
+	catfunctions.Dummy()
 	cmd.Execute()
 }

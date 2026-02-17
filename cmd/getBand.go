@@ -6,6 +6,8 @@ package cmd
 import (
 	"fmt"
 
+	"catctl/catfunctions"
+
 	"github.com/spf13/cobra"
 )
 
@@ -26,14 +28,8 @@ to quickly create a Cobra application.`,
 
 func init() {
 	getCmd.AddCommand(getBandCmd)
+	_, radio := catfunctions.GetConf()
+	command := catfunctions.GetCommand(radio, "getBand")
+	fmt.Println("Command to send:", command)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// getBandCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// getBandCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
