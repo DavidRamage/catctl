@@ -1,0 +1,35 @@
+/*
+Copyright © 2025 David Ramage
+*/
+package cmd
+
+import (
+	"fmt"
+
+	"catctl/catfunctions"
+
+	"github.com/spf13/cobra"
+)
+
+// getBandCmd represents the getBand command
+var getBandCmd = &cobra.Command{
+	Use:   "band",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("getBand called")
+	},
+}
+
+func init() {
+	getCmd.AddCommand(getBandCmd)
+	_, radio := catfunctions.GetConf()
+	command := catfunctions.GetCommand(radio, "getBand")
+	fmt.Println("Command to send:", command)
+
+}
