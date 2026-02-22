@@ -37,3 +37,7 @@ func init() {
 	// is called directly, e.g.:
 	// getCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
+
+func get() {
+	fmt.Println("get called")
+}
