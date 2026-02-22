@@ -6,8 +6,6 @@ package cmd
 import (
 	"fmt"
 
-	"catctl/catfunctions"
-
 	"github.com/spf13/cobra"
 )
 
@@ -28,8 +26,7 @@ to quickly create a Cobra application.`,
 
 func init() {
 	getCmd.AddCommand(getBandCmd)
-	_, radio := catfunctions.GetConf()
-	command := catfunctions.GetCommand(radio, "getBand")
-	fmt.Println("Command to send:", command)
-
+	//fmt.Println("Command to send:", command)
+	//_, radio := catfunctions.GetConf()
+	//command := catfunctions.GetCommand(radio, "getBand")
 }
