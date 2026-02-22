@@ -46,7 +46,7 @@ func GetCommand(radio string, cmd string) string {
 	return viper.GetString(radio + "." + cmd)
 }
 
-func Dummy() {
-	// Dummy function to make go compiler happy
-	fmt.Println("dummy")
-}
+//func Dummy() {
+//	// Dummy function to make go compiler happy
+//	fmt.Println("dummy")
+//}
