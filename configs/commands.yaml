@@ -1,0 +1,12 @@
+---
+radio:
+  - FT450D:
+      setBand: "BS"
+      setFreqVfoA: "FA"
+      setFreqVfoB: "FB"
+      setMode: "MD"
+      getBand: "GS"
+      getFreqVfoA: "GA"
+      getFreqVfoB: "GB"
+      getMode: "GM"
+      getVfo: "GV"

@@ -1,0 +1,8 @@
+---
+dev: '/dev/ttyUSB0'
+baudRate: 115200
+dts: off
+rts: low
+parity: none
+stopBits: 2
+dataBits: 8
