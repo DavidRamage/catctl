@@ -6,3 +6,4 @@ rts: low
 parity: none
 stopBits: 2
 dataBits: 8
+radio: 'FT450D'

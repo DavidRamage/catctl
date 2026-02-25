@@ -4,6 +4,7 @@ Copyright © 2025 David Ramage
 package cmd
 
 import (
+	"catctl/catfunctions"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -21,6 +22,10 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("getBand called")
+		_, radio := catfunctions.GetConf()
+		fmt.Println(radio)
+		command := catfunctions.GetCommand(radio, "setBand")
+		fmt.Println(command)
 	},
 }
 

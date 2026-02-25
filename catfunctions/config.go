@@ -15,12 +15,12 @@ func GetConf() (SerialConf, string) {
 	viper.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
 		"baudRate": 38400, "parity": "none", "dataBits": 8,
 		"stopBits": 1, "rts": false, "dtr": false})
-	viper.SetDefault("Radio", "FT450D")
+	viper.SetDefault("radio", "FT450D")
 	err := viper.ReadInConfig()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
 	}
-	radio := viper.GetString("Radio")
+	radio := viper.GetString("radio")
 	sc := SerialConf{
 		dev:      viper.GetString("Serial.dev"),
 		baudRate: viper.GetInt("Serial.baudRate"),
@@ -35,9 +35,9 @@ func GetConf() (SerialConf, string) {
 }
 
 func GetCommand(radio string, cmd string) string {
-	viper.SetConfigName("commands")
+	viper.SetConfigName("radios")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("/usr/local/share/catctl/commands")
+	viper.AddConfigPath("$HOME/.catctl")
 	err := viper.ReadInConfig()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
