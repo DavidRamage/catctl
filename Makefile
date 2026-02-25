@@ -4,8 +4,8 @@ build:
 
 configfiles:
 	mkdir -p ~/.catctl
-	cp configs/commands.yaml ~/.catctl/commands.yaml
-	cp configs/serial.yaml ~/.catctl/serial.yaml
+	cp configs/config.yaml ~/.catctl/config.yaml
+	cp configs/radios.yaml ~/.catctl/radios.yaml
 clean:
 	go clean	
 	rm -f $(BINARY_NAME)
