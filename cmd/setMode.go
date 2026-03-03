@@ -4,6 +4,7 @@ Copyright © 2025 David Ramage
 package cmd
 
 import (
+	"catctl/catfunctions"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -20,7 +21,9 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("setMode called")
+		_, radio := catfunctions.GetConf()
+		command := catfunctions.GetCommand(radio, "setmode")
+		fmt.Println(command)
 	},
 }
 
