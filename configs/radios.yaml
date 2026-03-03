@@ -1,0 +1,12 @@
+---
+ft450d:
+  setband: "BS"
+  setfreqvfoa: "FA"
+  setfreqvfob: "FB"
+  setmode: "MD"
+  getband: "GS"
+  getfreqvfoa: "GA"
+  getfreqvfob: "GB"
+  getmode: "GM"
+  getvfo: "GV"
+  setvfo: "VS"

@@ -9,44 +9,47 @@ import (
 )
 
 func GetConf() (SerialConf, string) {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("$HOME/.catctl")
-	viper.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
+	v := viper.New()
+	v.SetConfigName("config")
+	v.SetConfigType("yaml")
+	v.AddConfigPath("$HOME/.catctl")
+	v.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
 		"baudRate": 38400, "parity": "none", "dataBits": 8,
 		"stopBits": 1, "rts": false, "dtr": false})
-	viper.SetDefault("Radio", "FT450D")
-	err := viper.ReadInConfig()
+	v.SetDefault("radio", "ft450d")
+	err := v.ReadInConfig()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
 	}
-	radio := viper.GetString("Radio")
+	radio := v.GetString("radio")
 	sc := SerialConf{
-		dev:      viper.GetString("Serial.dev"),
-		baudRate: viper.GetInt("Serial.baudRate"),
-		rts:      viper.GetBool("Serial.rts"),
-		dtr:      viper.GetBool("Serial.dts"),
+		dev:      v.GetString("Serial.dev"),
+		baudRate: v.GetInt("Serial.baudRate"),
+		rts:      v.GetBool("Serial.rts"),
+		dtr:      v.GetBool("Serial.dts"),
 		parity:   serial.NoParity,
 		stopBits: serial.OneStopBit,
-		dataBits: viper.GetInt("Serial.dataBits"),
+		dataBits: v.GetInt("Serial.dataBits"),
 	}
 	return sc, radio
 
 }
 
 func GetCommand(radio string, cmd string) string {
-	viper.SetConfigName("commands")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("/usr/local/share/catctl/commands")
-	err := viper.ReadInConfig()
+	v := viper.New()
+	v.SetConfigName("radios")
+	v.SetConfigType("yaml")
+	v.AddConfigPath("$HOME/.catctl")
+	err := v.ReadInConfig()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
 		os.Exit(-1)
 	}
-	return viper.GetString(radio + "." + cmd)
+	key := fmt.Sprintf("%s.%s", radio, cmd)
+	result := v.GetString(key)
+	if result == "" {
+		fmt.Fprintf(os.Stderr, "Unable to find command for radio %s and command %s.  Check your radios.yaml file.\n", radio, cmd)
+		os.Exit(-1)
+	}
+	return result
 }
-
-//func Dummy() {
-//	// Dummy function to make go compiler happy
-//	fmt.Println("dummy")
-//}
