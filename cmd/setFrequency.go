@@ -12,6 +12,7 @@ import (
 
 // setFrequencyCmd represents the setFrequency command
 // we need to split this out per vfo
+var vfo string
 var setFrequencyCmd = &cobra.Command{
 	Use:   "frequency",
 	Short: "A brief description of your command",
@@ -23,20 +24,13 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		_, radio := catfunctions.GetConf()
-		command := catfunctions.GetCommand(radio, "setfrequency")
+		command := catfunctions.GetCommand(radio, "setfreqvfo"+vfo)
 		fmt.Println(command)
 	},
 }
 
 func init() {
 	setCmd.AddCommand(setFrequencyCmd)
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// setFrequencyCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// setFrequencyCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	setFrequencyCmd.Flags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
+	//helloCmd.Flags().StringVarP(&userName, "name", "n", "Guest", "Name of the user to greet")^
 }
