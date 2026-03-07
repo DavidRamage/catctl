@@ -23,13 +23,14 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		_, radio := catfunctions.GetConf()
-		command := catfunctions.GetCommand(radio, "getfrequency")
+		command := catfunctions.GetCommand(radio, "getfreqvfo"+vfo)
 		fmt.Println(command)
 	},
 }
 
 func init() {
 	getCmd.AddCommand(getFrequencyCmd)
+	//	setFrequencyCmd.Flags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

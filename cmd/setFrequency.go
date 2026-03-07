@@ -12,7 +12,7 @@ import (
 
 // setFrequencyCmd represents the setFrequency command
 // we need to split this out per vfo
-var vfo string
+
 var setFrequencyCmd = &cobra.Command{
 	Use:   "frequency",
 	Short: "A brief description of your command",
@@ -31,6 +31,6 @@ to quickly create a Cobra application.`,
 
 func init() {
 	setCmd.AddCommand(setFrequencyCmd)
-	setFrequencyCmd.Flags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
+	//setFrequencyCmd.Flags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
 	//helloCmd.Flags().StringVarP(&userName, "name", "n", "Guest", "Name of the user to greet")^
 }
