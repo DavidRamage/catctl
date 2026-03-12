@@ -26,6 +26,8 @@ to quickly create a Cobra application.`,
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
+var vfo string
+
 func Execute() {
 	err := rootCmd.Execute()
 	//	catfunctions.Dummy()
@@ -42,6 +44,7 @@ func init() {
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.catctl.yaml)")
 
 	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
+	//rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Enable verbose output")	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
 }
