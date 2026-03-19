@@ -1,6 +1,7 @@
 package catfunctions
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -47,6 +48,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		if n == 0 {
 			break
 		}
+		fmt.Println("received", n, "bytes")
 		return string(buff[:n])
 	}
 	return ""
