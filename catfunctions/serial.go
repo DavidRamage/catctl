@@ -32,7 +32,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		os.Exit(-1)
 	}
 	port.SetRTS(false)
-	port.SetDTR(false)
+	//port.SetDTR(false)
 	n, err := port.Write([]byte(cmd))
 	if n == 0 {
 		os.Exit(-1)
