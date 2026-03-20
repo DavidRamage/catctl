@@ -32,7 +32,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	port.SetRTS(false)
+	//port.SetRTS(false)
 	//port.SetDTR(false)
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
