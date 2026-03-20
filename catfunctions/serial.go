@@ -32,8 +32,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	//port.SetRTS(false)
-	//port.SetDTR(false)
+	port.SetRTS(cnf.rts)
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
 	}
@@ -45,7 +44,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	time.Sleep(5000 * time.Millisecond)
+	time.Sleep(100 * time.Millisecond)
 	buff := make([]byte, 64)
 	for {
 		n, err := port.Read(buff)
