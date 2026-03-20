@@ -24,18 +24,16 @@ func GetConf() (SerialConf, string) {
 	if err := v.ReadInConfig(); err != nil {
 		fmt.Fprintf(os.Stderr, "Config not found: %v. Using defaults.\n", err)
 	}
-	radio := v.GetString("radio")
-	sc := SerialConf{
-		dev:      v.GetString("Serial.dev"),
-		baudRate: v.GetInt("Serial.baudrate"),
-		rts:      v.GetBool("Serial.rts"),
-		dtr:      v.GetBool("Serial.dts"),
-		parity:   serial.NoParity,
-		stopBits: serial.OneStopBit,
-		dataBits: v.GetInt("Serial.databits"),
+	var sc SerialConf
+	err = v.UnmarshalKey("Serial", &sc)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to decode into struct, %v", err)
 	}
-	return sc, radio
 
+	sc.parity = serial.NoParity
+	sc.stopBits = serial.OneStopBit
+
+	return sc, v.GetString("radio")
 }
 
 func GetCommand(radio string, cmd string) string {
