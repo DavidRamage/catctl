@@ -3,6 +3,7 @@ package catfunctions
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/viper"
 	"go.bug.st/serial"
@@ -10,16 +11,18 @@ import (
 
 func GetConf() (SerialConf, string) {
 	v := viper.New()
+	home, err := os.UserHomeDir()
+	if err == nil {
+		v.AddConfigPath(filepath.Join(home, ".catctl"))
+	}
 	v.SetConfigName("config")
 	v.SetConfigType("yaml")
-	v.AddConfigPath("$HOME/.catctl")
 	v.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
 		"baudrate": 38400, "parity": "none", "databits": 8,
 		"stopbits": 1, "rts": false, "dtr": false})
 	v.SetDefault("radio", "ft450d")
-	err := v.ReadInConfig()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
+	if err := v.ReadInConfig(); err != nil {
+		fmt.Fprintf(os.Stderr, "Config not found: %v. Using defaults.\n", err)
 	}
 	radio := v.GetString("radio")
 	sc := SerialConf{
