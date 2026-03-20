@@ -14,8 +14,8 @@ func GetConf() (SerialConf, string) {
 	v.SetConfigType("yaml")
 	v.AddConfigPath("$HOME/.catctl")
 	v.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
-		"baudRate": 38400, "parity": "none", "dataBits": 8,
-		"stopBits": 1, "rts": false, "dtr": false})
+		"baudrate": 38400, "parity": "none", "databits": 8,
+		"stopbits": 1, "rts": false, "dtr": false})
 	v.SetDefault("radio", "ft450d")
 	err := v.ReadInConfig()
 	if err != nil {
@@ -24,12 +24,12 @@ func GetConf() (SerialConf, string) {
 	radio := v.GetString("radio")
 	sc := SerialConf{
 		dev:      v.GetString("Serial.dev"),
-		baudRate: v.GetInt("Serial.baudRate"),
+		baudRate: v.GetInt("Serial.baudrate"),
 		rts:      v.GetBool("Serial.rts"),
 		dtr:      v.GetBool("Serial.dts"),
 		parity:   serial.NoParity,
 		stopBits: serial.OneStopBit,
-		dataBits: v.GetInt("Serial.dataBits"),
+		dataBits: v.GetInt("Serial.databits"),
 	}
 	return sc, radio
 
