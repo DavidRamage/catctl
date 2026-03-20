@@ -39,7 +39,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	time.Sleep(100 * time.Millisecond)
+	time.Sleep(5000 * time.Millisecond)
 	buff := make([]byte, 32)
 	for {
 		n, err := port.Read(buff)
