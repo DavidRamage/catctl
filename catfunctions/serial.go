@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"go.bug.st/serial"
@@ -33,6 +34,9 @@ func SendCommand(cnf SerialConf, cmd string) string {
 	}
 	port.SetRTS(false)
 	//port.SetDTR(false)
+	if !strings.HasSuffix(cmd, ";") {
+		cmd += ";"
+	}
 	n, err := port.Write([]byte(cmd))
 	if n == 0 {
 		os.Exit(-1)
@@ -42,7 +46,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		os.Exit(-1)
 	}
 	time.Sleep(5000 * time.Millisecond)
-	buff := make([]byte, 32)
+	buff := make([]byte, 64)
 	for {
 		n, err := port.Read(buff)
 		if err != nil {
