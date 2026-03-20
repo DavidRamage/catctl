@@ -27,12 +27,13 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		DataBits: cnf.dataBits,
 		StopBits: cnf.stopBits,
 	}
+	fmt.Printf("%v\n", mode)
 	port, err := serial.Open(cnf.dev, mode)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	port.SetRTS(cnf.rts)
+	port.SetRTS(false)
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
 	}
