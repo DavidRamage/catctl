@@ -25,10 +25,10 @@ to quickly create a Cobra application.`,
 		command := catfunctions.GetRadioData(radio, "commands", "getmode")
 		fmt.Println(command)
 		cmdOut := catfunctions.SendCommand(serial, command)
-		bandKey := string(cmdOut[3])
+		modeKey := string(cmdOut[3])
 		fmt.Println(cmdOut)
-		fmt.Println("Band key:", bandKey)
-		mode := catfunctions.GetRadioData(radio, "bands", bandKey)
+		fmt.Println("Mode key:", modeKey)
+		mode := catfunctions.GetRadioData(radio, "modetable", modeKey)
 		fmt.Println("Mode:", mode)
 	},
 }
