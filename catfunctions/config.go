@@ -50,7 +50,7 @@ func GetConf() (SerialConf, string) {
 	return sc, v.GetString("radio")
 }
 
-func GetCommand(radio string, cmd string) string {
+func GetRadioData(radio string, key string, value string) string {
 	v := viper.New()
 	v.SetConfigName("radios")
 	v.SetConfigType("yaml")
@@ -60,10 +60,10 @@ func GetCommand(radio string, cmd string) string {
 		fmt.Fprintf(os.Stderr, "Unable to load config file.  Using defaults which are probably wrong for you.\n")
 		os.Exit(-1)
 	}
-	key := fmt.Sprintf("%s.%s", radio, cmd)
-	result := v.GetString(key)
+	lookup := fmt.Sprintf("%s.%s.%s", radio, key, value)
+	result := v.GetString(lookup)
 	if result == "" {
-		fmt.Fprintf(os.Stderr, "Unable to find command for radio %s and command %s.  Check your radios.yaml file.\n", radio, cmd)
+		fmt.Fprintf(os.Stderr, "Unable to find data for radio %s key %s and  value %s.  Check your radios.yaml file.\n", radio, key, value)
 		os.Exit(-1)
 	}
 	return result

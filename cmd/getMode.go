@@ -22,10 +22,12 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio := catfunctions.GetConf()
-		command := catfunctions.GetCommand(radio, "getmode")
+		command := catfunctions.GetRadioData(radio, "commands", "getmode")
 		fmt.Println(command)
 		cmdOut := catfunctions.SendCommand(serial, command)
+		bandKey := cmdOut[3]
 		fmt.Println(cmdOut)
+		fmt.Println("Band key:", bandKey)
 	},
 }
 
