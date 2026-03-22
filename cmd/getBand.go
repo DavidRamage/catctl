@@ -10,6 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// not natively supported by the CAT protocol, but can be used to get the band from the radio and then use that to determine which commands to send for other functions like getmode, getvfo, etc.
 // getBandCmd represents the getBand command
 var getBandCmd = &cobra.Command{
 	Use:   "band",

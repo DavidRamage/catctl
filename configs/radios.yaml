@@ -8,5 +8,5 @@ ft450d:
   getfreqvfoa: "FA;"
   getfreqvfob: "FB;"
   getmode: "GM"
-  getvfo: "GV"
+  getvfo: "VS"
   setvfo: "VS"
