@@ -23,9 +23,10 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio := catfunctions.GetConf()
 		commandPrefix := catfunctions.GetRadioData(radio, "commands", "setband")
-		command := commandPrefix + " " + args[0]
 		bandcode := catfunctions.GetRadioData(radio, "bandtable", args[0])
-		out := catfunctions.SendCommand(serial, command+bandcode)
+		fmt.Println("Command prefix:", commandPrefix)
+		fmt.Println("Band code:", bandcode)
+		out := catfunctions.SendCommand(serial, commandPrefix+bandcode)
 		fmt.Println(out)
 	},
 }
