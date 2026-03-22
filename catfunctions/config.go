@@ -29,10 +29,19 @@ func GetConf() (SerialConf, string) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to decode into struct, %v", err)
 	}
+	sc.dev = v.GetString("dev")
+	sc.baudRate = v.GetInt("baudrate")
+	sc.dataBits = v.GetInt("databits")
+	if v.GetString("parity") == "even" {
+		sc.parity = serial.EvenParity
+	} else if v.GetString("parity") == "odd" {
+		sc.parity = serial.OddParity
+	} else {
 
-	sc.parity = serial.NoParity
-	sc.stopBits = serial.OneStopBit
-
+		sc.parity = serial.NoParity
+	}
+	sc.dtr = v.GetBool("dtr")
+	sc.rts = v.GetBool("rts")
 	return sc, v.GetString("radio")
 }
 
