@@ -7,6 +7,6 @@ ft450d:
   getband: "GS"
   getfreqvfoa: "FA;"
   getfreqvfob: "FB;"
-  getmode: "GM"
+  getmode: "MD0"
   getvfo: "VS"
   setvfo: "VS"
