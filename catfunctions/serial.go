@@ -27,7 +27,6 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		DataBits: cnf.dataBits,
 		StopBits: cnf.stopBits,
 	}
-	fmt.Println("command sent:", cmd)
 	port, err := serial.Open(cnf.dev, mode)
 	if err != nil {
 		log.Fatal(err)
@@ -39,6 +38,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		cmd += ";"
 	}
 	n, err := port.Write([]byte(cmd))
+	fmt.Println("command sent:", cmd)
 	if n == 0 {
 		os.Exit(-1)
 	}
