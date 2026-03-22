@@ -42,6 +42,11 @@ func GetConf() (SerialConf, string) {
 	}
 	sc.dtr = v.GetBool("dtr")
 	sc.rts = v.GetBool("rts")
+	if v.GetInt("stopbits") == 1 {
+		sc.stopBits = serial.OneStopBit
+	} else if v.GetInt("stopbits") == 2 {
+		sc.stopBits = serial.TwoStopBits
+	}
 	return sc, v.GetString("radio")
 }
 
