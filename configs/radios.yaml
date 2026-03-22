@@ -1,12 +1,26 @@
 ---
 ft450d:
-  setband: "BS"
-  setfreqvfoa: "FA"
-  setfreqvfob: "FB"
-  setmode: "MD"
-  getband: "GS"
-  getfreqvfoa: "FA;"
-  getfreqvfob: "FB;"
-  getmode: "MD0"
-  getvfo: "VS"
-  setvfo: "VS"
+  commands:
+    setband: "BS"
+    setfreqvfoa: "FA"
+    setfreqvfob: "FB"
+    setmode: "MD"
+    getband: "GS"
+    getfreqvfoa: "FA;"
+    getfreqvfob: "FB;"
+    getmode: "MD0"
+    getvfo: "VS"
+    setvfo: "VS"
+  modetable:
+    1: "LSB"
+    2: "USB"
+    3: "CW"
+    4: "FM"
+    5: "AM"
+    6: "DATA (RTTY-LSB)"
+    7: "CW-R"
+    8: "USER-L"
+    9: "DATA (RTTY-USB)"
+    B: "FM-N"
+    C: "USER-U
+
