@@ -21,6 +21,7 @@ type SerialConf struct {
 }
 
 func SendCommand(cnf SerialConf, cmd string) string {
+	//TODO: this does not handle commands that do not return a response.  Need to handle that and also handle error messages from the radio
 	mode := &serial.Mode{
 		BaudRate:          cnf.baudRate,
 		Parity:            cnf.parity,
@@ -29,6 +30,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		InitialStatusBits: &serial.ModemOutputBits{RTS: cnf.rts, DTR: cnf.dtr},
 	}
 	port, err := serial.Open(cnf.dev, mode)
+	port.SetReadTimeout(500 * time.Millisecond)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(-1)
