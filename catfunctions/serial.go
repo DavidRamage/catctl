@@ -21,11 +21,16 @@ type SerialConf struct {
 }
 
 func SendCommand(cnf SerialConf, cmd string) string {
+	statusBits := &serial.ModemOutputBits{
+		RTS: cnf.rts,
+		DTR: cnf.dtr,
+	}
 	mode := &serial.Mode{
-		BaudRate: cnf.baudRate,
-		Parity:   cnf.parity,
-		DataBits: cnf.dataBits,
-		StopBits: cnf.stopBits,
+		BaudRate:          cnf.baudRate,
+		Parity:            cnf.parity,
+		DataBits:          cnf.dataBits,
+		StopBits:          cnf.stopBits,
+		InitialStatusBits: statusBits,
 	}
 	port, err := serial.Open(cnf.dev, mode)
 	if err != nil {
