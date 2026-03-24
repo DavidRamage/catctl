@@ -26,7 +26,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		Parity:            cnf.parity,
 		DataBits:          cnf.dataBits,
 		StopBits:          cnf.stopBits,
-		InitialStatusBits: &serial.ModemOutputBits{RTS: false, DTR: true},
+		InitialStatusBits: &serial.ModemOutputBits{RTS: cnf.rts, DTR: cnf.dtr},
 	}
 	port, err := serial.Open(cnf.dev, mode)
 	if err != nil {
@@ -36,7 +36,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
 	}
-	time.Sleep(2000 * time.Millisecond)
+	time.Sleep(100 * time.Millisecond)
 	n, err := port.Write([]byte(cmd))
 	fmt.Println("command sent:", cmd)
 	if n == 0 {
