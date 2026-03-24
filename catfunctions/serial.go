@@ -36,6 +36,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
 	}
+	time.Sleep(2000 * time.Millisecond)
 	n, err := port.Write([]byte(cmd))
 	fmt.Println("command sent:", cmd)
 	if n == 0 {
