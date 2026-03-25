@@ -23,7 +23,6 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio := catfunctions.GetConf()
 		command := catfunctions.GetRadioData(radio, "commands", "getvfo")
-		fmt.Println(command)
 		cmdOut := catfunctions.SendCommand(serial, command)
 		fmt.Println(cmdOut)
 	},
@@ -31,13 +30,4 @@ to quickly create a Cobra application.`,
 
 func init() {
 	getCmd.AddCommand(getVfoCmd)
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// getVfoCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// getVfoCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

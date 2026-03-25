@@ -32,6 +32,4 @@ to quickly create a Cobra application.`,
 
 func init() {
 	setCmd.AddCommand(setFrequencyCmd)
-	//setFrequencyCmd.Flags().StringVarP(&vfo, "vfo", "v", "a", "VFO to use")
-	//helloCmd.Flags().StringVarP(&userName, "name", "n", "Guest", "Name of the user to greet")^
 }

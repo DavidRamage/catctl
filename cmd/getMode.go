@@ -23,11 +23,8 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio := catfunctions.GetConf()
 		command := catfunctions.GetRadioData(radio, "commands", "getmode")
-		fmt.Println(command)
 		cmdOut := catfunctions.SendCommand(serial, command)
 		modeKey := string(cmdOut[3])
-		fmt.Println(cmdOut)
-		fmt.Println("Mode key:", modeKey)
 		mode := catfunctions.GetRadioData(radio, "modetable", modeKey)
 		fmt.Println("Mode:", mode)
 	},
