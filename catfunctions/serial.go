@@ -3,6 +3,8 @@ package catfunctions
 import (
 	"log"
 	"os"
+	"strings"
+	"time"
 
 	"go.bug.st/serial"
 )
@@ -18,17 +20,25 @@ type SerialConf struct {
 }
 
 func SendCommand(cnf SerialConf, cmd string) string {
+	//TODO:  Need to handle handle error messages from the radio
 	mode := &serial.Mode{
-		BaudRate: cnf.baudRate,
-		Parity:   cnf.parity,
-		DataBits: cnf.dataBits,
-		StopBits: cnf.stopBits,
+		BaudRate:          cnf.baudRate,
+		Parity:            cnf.parity,
+		DataBits:          cnf.dataBits,
+		StopBits:          cnf.stopBits,
+		InitialStatusBits: &serial.ModemOutputBits{RTS: cnf.rts, DTR: cnf.dtr},
 	}
 	port, err := serial.Open(cnf.dev, mode)
+	//sleep to let rts go low
+	port.SetReadTimeout(500 * time.Millisecond)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
+	if !strings.HasSuffix(cmd, ";") {
+		cmd += ";"
+	}
+	time.Sleep(100 * time.Millisecond)
 	n, err := port.Write([]byte(cmd))
 	if n == 0 {
 		os.Exit(-1)
@@ -37,7 +47,8 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		log.Fatal(err)
 		os.Exit(-1)
 	}
-	buff := make([]byte, 32)
+	time.Sleep(100 * time.Millisecond)
+	buff := make([]byte, 64)
 	for {
 		n, err := port.Read(buff)
 		if err != nil {

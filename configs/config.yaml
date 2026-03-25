@@ -1,9 +1,9 @@
 ---
 dev: '/dev/ttyUSB0'
-baudRate: 115200
-dts: off
-rts: low
+baudrate: 9600
+dtr: false
+rts: false
 parity: none
-stopBits: 2
-dataBits: 8
+stopbits: 2
+databits: 8
 radio: 'ft450d'

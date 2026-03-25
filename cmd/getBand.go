@@ -10,6 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// not natively supported by the CAT protocol, but can be used to get the band from the radio and then use that to determine which commands to send for other functions like getmode, getvfo, etc.
 // getBandCmd represents the getBand command
 var getBandCmd = &cobra.Command{
 	Use:   "band",
@@ -21,9 +22,10 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		_, radio := catfunctions.GetConf()
-		command := catfunctions.GetCommand(radio, "getband")
-		fmt.Println(command)
+		serial, radio := catfunctions.GetConf()
+		command := catfunctions.GetRadioData(radio, "commands", "getband")
+		cmdOut := catfunctions.SendCommand(serial, command)
+		fmt.Println(cmdOut)
 	},
 }
 
