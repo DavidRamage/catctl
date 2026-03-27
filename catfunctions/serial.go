@@ -19,7 +19,7 @@ type SerialConf struct {
 	dtr      bool
 }
 
-func SendCommand(cnf SerialConf, cmd string) string {
+func SendCommand(cnf SerialConf, cmd string) (string, error) {
 	//TODO:  Need to handle handle error messages from the radio
 	mode := &serial.Mode{
 		BaudRate:          cnf.baudRate,
@@ -58,7 +58,7 @@ func SendCommand(cnf SerialConf, cmd string) string {
 		if n == 0 {
 			break
 		}
-		return string(buff[:n])
+		return string(buff[:n]), nil
 	}
-	return ""
+	return "", nil
 }

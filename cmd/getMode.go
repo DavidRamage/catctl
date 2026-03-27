@@ -6,6 +6,7 @@ package cmd
 import (
 	"catctl/catfunctions"
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -23,10 +24,13 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio := catfunctions.GetConf()
 		command := catfunctions.GetRadioData(radio, "commands", "getmode")
-		cmdOut := catfunctions.SendCommand(serial, command)
-		modeKey := string(cmdOut[3])
-		mode := catfunctions.GetRadioData(radio, "modetable", modeKey)
-		fmt.Println("Mode:", mode)
+		modeKey, err := catfunctions.SendCommand(serial, command)
+		if err != nil {
+			os.Exit(-1)
+		} else {
+			mode := catfunctions.GetRadioData(radio, "modetable", modeKey)
+			fmt.Println("Mode:", mode)
+		}
 	},
 }
 
