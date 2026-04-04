@@ -9,7 +9,7 @@ import (
 	"go.bug.st/serial"
 )
 
-func GetConf() (SerialConf, string) {
+func GetConf() (SerialConf, string, error) {
 	v := viper.New()
 	home, err := os.UserHomeDir()
 	if err == nil {
@@ -49,10 +49,10 @@ func GetConf() (SerialConf, string) {
 		fmt.Printf("Using 2 stop bits\n")
 		sc.stopBits = serial.TwoStopBits
 	}
-	return sc, v.GetString("radio")
+	return sc, v.GetString("radio"), nil
 }
 
-func GetRadioData(radio string, key string, value string) string {
+func GetRadioData(radio string, key string, value string) (string, error) {
 	v := viper.New()
 	v.SetConfigName("radios")
 	v.SetConfigType("yaml")
@@ -68,5 +68,5 @@ func GetRadioData(radio string, key string, value string) string {
 		fmt.Fprintf(os.Stderr, "Unable to find data for radio %s key %s and  value %s.  Check your radios.yaml file.\n", radio, key, value)
 		os.Exit(-1)
 	}
-	return result
+	return result, nil
 }
