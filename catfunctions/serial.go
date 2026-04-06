@@ -1,6 +1,8 @@
 package catfunctions
 
 import (
+	"errors"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -17,6 +19,7 @@ type SerialConf struct {
 	stopBits serial.StopBits
 	rts      bool
 	dtr      bool
+	errorStr string
 }
 
 func SendCommand(cnf SerialConf, cmd string) (string, error) {
@@ -57,6 +60,9 @@ func SendCommand(cnf SerialConf, cmd string) (string, error) {
 		}
 		if n == 0 {
 			break
+		}
+		if string(buff[:n]) == cnf.errorStr {
+			return "", errors.New(fmt.Sprintf("Command %s undefined or malformed.", cmd))
 		}
 		return string(buff[:n]), nil
 	}

@@ -49,6 +49,7 @@ func GetConf() (SerialConf, string, error) {
 		fmt.Printf("Using 2 stop bits\n")
 		sc.stopBits = serial.TwoStopBits
 	}
+	sc.errorStr = v.GetString("errstr")
 	return sc, v.GetString("radio"), nil
 }
 
