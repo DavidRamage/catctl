@@ -6,6 +6,7 @@ package cmd
 import (
 	"catctl/catfunctions"
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -21,10 +22,23 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		serial, radio := catfunctions.GetConf()
-		command := catfunctions.GetRadioData(radio, "commands", "getvfo")
-		cmdOut := catfunctions.SendCommand(serial, command)
-		fmt.Println(cmdOut)
+		serial, radio, err := catfunctions.GetConf()
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		command, err := catfunctions.GetRadioData(radio, "commands", "getvfo")
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		cmdOut, err := catfunctions.SendCommand(serial, command)
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		} else {
+			fmt.Println(cmdOut)
+		}
 	},
 }
 

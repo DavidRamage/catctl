@@ -7,3 +7,4 @@ parity: none
 stopbits: 2
 databits: 8
 radio: 'ft450d'
+errstr: '?;'
