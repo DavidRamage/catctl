@@ -35,8 +35,7 @@ func SendCommand(cnf SerialConf, cmd string) (string, error) {
 	//sleep to let rts go low
 	port.SetReadTimeout(500 * time.Millisecond)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(-1)
+		return "", errors.New(fmt.Sprintf("Unable to open serial port %s due to error: %s", cnf.dev, err))
 	}
 	if !strings.HasSuffix(cmd, ";") {
 		cmd += ";"
@@ -44,11 +43,10 @@ func SendCommand(cnf SerialConf, cmd string) (string, error) {
 	time.Sleep(100 * time.Millisecond)
 	n, err := port.Write([]byte(cmd))
 	if n == 0 {
-		os.Exit(-1)
+		return "", errors.New(fmt.Sprintf("Zero bytes written sending command %s to serial port %s", cmd, cnf.dev))
 	}
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(-1)
+		return "", errors.New(fmt.Sprintf("Unable to write command %s to serial port %s due to %s", cmd, cnf.dev, err))
 	}
 	time.Sleep(100 * time.Millisecond)
 	buff := make([]byte, 64)
