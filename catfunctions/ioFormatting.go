@@ -10,7 +10,7 @@ func ToHz(s string) (string, error) {
 	var multiplier int
 	unit := s[len(s)-1]
 	if unicode.IsDigit(rune(unit)) {
-		return s, nil
+		return fmt.Sprintf("%09d", s), nil
 	}
 	freq, err := strconv.ParseFloat(s[:len(s)-1], 64)
 	if err != nil {
@@ -25,5 +25,5 @@ func ToHz(s string) (string, error) {
 		return "0", fmt.Errorf("invalid frequency format: %s", s)
 	}
 	hz := strconv.FormatInt(int64(freq*float64(multiplier)), 10)
-	return hz, nil
+	return fmt.Sprintf("%09d", hz), nil
 }
