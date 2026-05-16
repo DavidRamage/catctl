@@ -29,7 +29,6 @@ func ToHz(s string) (string, error) {
 	default:
 		return "0", fmt.Errorf("invalid frequency format: %s", s)
 	}
-	//hz := strconv.FormatInt(int64(freq*float64(multiplier)), 10)
 	hz := freq * multiplier
 	return fmt.Sprintf("%08d", int(hz)), nil
 }
