@@ -9,6 +9,7 @@ import (
 func ToHz(s string) (string, error) {
 	var multiplier int
 	unit := s[len(s)-1]
+	//input is already in Hz
 	if unicode.IsDigit(rune(unit)) {
 		hz, err := strconv.Atoi(s)
 		if err != nil {
@@ -16,7 +17,7 @@ func ToHz(s string) (string, error) {
 		}
 		return fmt.Sprintf("%08d", hz), nil
 	}
-	freq, err := strconv.ParseFloat(s[:len(s)-1], 64)
+	freq, err := strconv.Atoi(s[:len(s)-1])
 	if err != nil {
 		return "0", fmt.Errorf("invalid frequency format: %s", s)
 	}
@@ -28,6 +29,7 @@ func ToHz(s string) (string, error) {
 	default:
 		return "0", fmt.Errorf("invalid frequency format: %s", s)
 	}
-	hz := strconv.FormatInt(int64(freq*float64(multiplier)), 10)
+	//hz := strconv.FormatInt(int64(freq*float64(multiplier)), 10)
+	hz := freq * multiplier
 	return fmt.Sprintf("%08d", hz), nil
 }
