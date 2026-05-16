@@ -34,7 +34,12 @@ to quickly create a Cobra application.`,
 			fmt.Println("Error: ", err)
 			os.Exit(-1)
 		}
-		out, err := catfunctions.SendCommand(serial, command+args[0])
+		hz, err := catfunctions.ToHz(args[0])
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		out, err := catfunctions.SendCommand(serial, command+hz)
 		if err != nil {
 			fmt.Println("Error: ", err)
 			os.Exit(-1)
