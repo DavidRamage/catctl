@@ -7,7 +7,7 @@ import (
 )
 
 func ToHz(s string) (string, error) {
-	var multiplier int
+	var multiplier float64
 	unit := s[len(s)-1]
 	//input is already in Hz
 	if unicode.IsDigit(rune(unit)) {
