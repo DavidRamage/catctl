@@ -33,8 +33,8 @@ func ToHz(s string) (string, error) {
 	return fmt.Sprintf("%08d", int(hz)), nil
 }
 
-func FmtFrequencyOut(rawFreq string, unit string, prefixLen int) (string, error) {
-	frequency, err := strconv.Atoi(rawFreq[prefixLen:])
+func FmtFrequencyOut(rawFreq string, unit string, prefixLen int, suffixLen int) (string, error) {
+	frequency, err := strconv.Atoi(rawFreq[prefixLen : len(rawFreq)-suffixLen])
 	if err != nil {
 		return "Error", fmt.Errorf("unable to process frequency string: %s", rawFreq)
 	}
