@@ -14,14 +14,10 @@ import (
 // not natively supported by the CAT protocol, but can be used to get the band from the radio and then use that to determine which commands to send for other functions like getmode, getvfo, etc.
 // getBandCmd represents the getBand command
 var getBandCmd = &cobra.Command{
-	Use:   "band",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "catctl get band",
+	Short: "Get the current band the radio is using",
+	Long: `catctl get band
+80m`,
 	Run: func(cmd *cobra.Command, args []string) {
 		serial, radio, err := catfunctions.GetConf()
 		if err != nil {
