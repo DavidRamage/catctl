@@ -35,15 +35,16 @@ func ToHz(s string) (string, error) {
 
 func FmtFrequencyOut(rawFreq string, unit string, prefixLen int, suffixLen int) (string, error) {
 	frequency, err := strconv.Atoi(rawFreq[prefixLen : len(rawFreq)-suffixLen])
+
 	if err != nil {
 		return "Error", fmt.Errorf("unable to process frequency string: %s", rawFreq)
 	}
 	if unit == "hz" {
 		return fmt.Sprintf("%d hz", frequency), nil
 	} else if unit == "khz" {
-		return fmt.Sprintf("%f khz", frequency/1000), nil
+		return fmt.Sprintf("%f khz", float32(frequency/1000)), nil
 	} else if unit == "mhz" {
-		return fmt.Sprintf("%f mhz", frequency/1000000), nil
+		return fmt.Sprintf("%f mhz", float32(frequency/1000000)), nil
 	} else {
 		return "Error", fmt.Errorf("Invalid frequency unit: %s", unit)
 	}
