@@ -15,7 +15,7 @@ import (
 // we need to split this out per vfo
 
 var setFrequencyCmd = &cobra.Command{
-	Use:   "catctl set frequency",
+	Use:   "frequency",
 	Short: "Sets the frequency of the current VFO",
 	Long:  `catctl set frequency 7.2m`,
 	Run: func(cmd *cobra.Command, args []string) {

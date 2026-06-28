@@ -14,7 +14,7 @@ import (
 // setVfoCmd represents the setVfo command
 // this does not work yet
 var setVfoCmd = &cobra.Command{
-	Use:   "catctl set vfo",
+	Use:   "vfo",
 	Short: "Set the current variable frequency oscillator (VFO)",
 	Long:  `catctl set vfo 0`,
 	Run: func(cmd *cobra.Command, args []string) {

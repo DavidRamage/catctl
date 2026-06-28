@@ -9,7 +9,7 @@ import (
 
 // setCmd represents the set command
 var setCmd = &cobra.Command{
-	Use:   "catctl set",
+	Use:   "set",
 	Short: "Set various things about the radio",
 	Long: `catctl set frequency
 catctl set mode

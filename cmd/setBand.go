@@ -13,7 +13,7 @@ import (
 
 // setBandCmd represents the setBand command
 var setBandCmd = &cobra.Command{
-	Use:   "catctl set band",
+	Use:   "band",
 	Short: "Sets the current band",
 	Long:  `catctl set band 80m.`,
 	Run: func(cmd *cobra.Command, args []string) {

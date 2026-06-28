@@ -13,7 +13,7 @@ import (
 
 // setModeCmd represents the setMode command
 var setModeCmd = &cobra.Command{
-	Use:   "catctl set mode",
+	Use:   "mode",
 	Short: "Sets the mode of the radio",
 	Long:  `catctl set mode lsb`,
 	Run: func(cmd *cobra.Command, args []string) {
