@@ -8,9 +8,9 @@ import (
 )
 
 var getCmd = &cobra.Command{
-	Use:   "catctl get",
+	Use:   "get",
 	Short: "Get status information from the radio",
-	Long: `catctl get frequency
+	Long: `get frequency
 catctl get mode
 etc.`,
 }
