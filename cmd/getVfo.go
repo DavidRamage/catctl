@@ -13,7 +13,7 @@ import (
 
 // getVfoCmd represents the getVfo command
 var getVfoCmd = &cobra.Command{
-	Use:   "catctl get vfo",
+	Use:   "vfo",
 	Short: "Get the current VFO",
 	Long: `catctl get vfo
 VS0;.`,

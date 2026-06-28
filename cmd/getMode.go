@@ -13,7 +13,7 @@ import (
 
 // getModeCmd represents the getMode command
 var getModeCmd = &cobra.Command{
-	Use:   "catctl get mode",
+	Use:   "mode",
 	Short: "Get the current mode",
 	Long: `catctl get mode
 LSB`,

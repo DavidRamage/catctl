@@ -15,7 +15,7 @@ import (
 // getFrequencyCmd represents the getFrequency command
 // We need to mess with this because get frequency is per vfo
 var getFrequencyCmd = &cobra.Command{
-	Use:   "catctl get frequency",
+	Use:   "frequency",
 	Short: "Returns the frequency of the current VFO",
 	Long: `A longer description that spans multiple lines and likely contains examples
 catctl get frequency

@@ -14,7 +14,7 @@ import (
 // not natively supported by the CAT protocol, but can be used to get the band from the radio and then use that to determine which commands to send for other functions like getmode, getvfo, etc.
 // getBandCmd represents the getBand command
 var getBandCmd = &cobra.Command{
-	Use:   "catctl get band",
+	Use:   "band",
 	Short: "Get the current band the radio is using",
 	Long: `catctl get band
 80m`,
