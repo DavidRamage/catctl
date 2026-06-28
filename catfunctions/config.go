@@ -43,10 +43,8 @@ func GetConf() (SerialConf, string, error) {
 	sc.dtr = v.GetBool("dtr")
 	sc.rts = v.GetBool("rts")
 	if v.GetInt("stopbits") == 1 {
-		fmt.Printf("Using 1 stop bit\n")
 		sc.stopBits = serial.OneStopBit
 	} else if v.GetInt("stopbits") == 2 {
-		fmt.Printf("Using 2 stop bits\n")
 		sc.stopBits = serial.TwoStopBits
 	}
 	sc.errorStr = v.GetString("errstr")
