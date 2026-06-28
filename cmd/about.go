@@ -21,7 +21,6 @@ var aboutCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(aboutCmd)
-	about()
 }
 
 func about() {
