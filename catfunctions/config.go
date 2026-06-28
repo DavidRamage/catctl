@@ -50,6 +50,7 @@ func GetConf() (SerialConf, string, error) {
 		sc.stopBits = serial.TwoStopBits
 	}
 	sc.errorStr = v.GetString("errstr")
+	sc.unit = v.GetString("unit")
 	return sc, v.GetString("radio"), nil
 }
 

@@ -7,6 +7,7 @@ import (
 	"catctl/catfunctions"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/spf13/cobra"
 )
@@ -34,12 +35,38 @@ to quickly create a Cobra application.`,
 			fmt.Println("Error: ", err)
 			os.Exit(-1)
 		}
+		prefixlen_str, err := catfunctions.GetRadioData(radio, "formatting", "prefixlen")
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		prefixlen, err := strconv.Atoi(prefixlen_str)
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		suffixlen_str, err := catfunctions.GetRadioData(radio, "formatting", "suffixlen")
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
+		suffixlen, err := strconv.Atoi(suffixlen_str)
+		if err != nil {
+			fmt.Println("Error: ", err)
+			os.Exit(-1)
+		}
 		cmdOut, err := catfunctions.SendCommand(serial, command)
 		if err != nil {
 			fmt.Println("Error: ", err)
 			os.Exit(-1)
 		} else {
-			fmt.Println(cmdOut)
+			//TODO: make a preference-specific config file
+			freqFmt, err := catfunctions.FmtFrequencyOut(cmdOut, "khz", prefixlen, suffixlen)
+			if err != nil {
+				fmt.Println("Error: ", err)
+				os.Exit(-1)
+			}
+			fmt.Println(freqFmt)
 		}
 	},
 }
