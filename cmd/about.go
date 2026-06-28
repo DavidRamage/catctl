@@ -15,13 +15,13 @@ var aboutCmd = &cobra.Command{
 	Short: "About catctl",
 	Long:  "Catctl is a command line tool for interacting with your radio.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("about called")
+		about := `Catctl is a command line tool for interacting with your radio.`
+		fmt.Println(about)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(aboutCmd)
-	about()
 }
 
 func about() {
