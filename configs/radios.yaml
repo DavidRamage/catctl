@@ -34,4 +34,7 @@ ft450d:
     12m: "08"
     10m: "09"
     6m: "10"
+  formatting:
+    prefixlen: 2
+    suffixlen: 1
 

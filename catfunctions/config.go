@@ -19,7 +19,7 @@ func GetConf() (SerialConf, string, error) {
 	v.SetConfigType("yaml")
 	v.SetDefault("Serial", map[string]any{"dev": "/dev/ttyUSB0",
 		"baudrate": 38400, "parity": "none", "databits": 8,
-		"stopbits": 1, "rts": false, "dtr": false})
+		"stopbits": 1, "rts": false, "dtr": false, "unit": "khz"})
 	v.SetDefault("radio", "ft450d")
 	if err := v.ReadInConfig(); err != nil {
 		fmt.Fprintf(os.Stderr, "Config not found: %v. Using defaults.\n", err)
