@@ -20,6 +20,7 @@ type SerialConf struct {
 	rts      bool
 	dtr      bool
 	errorStr string
+	unit     string
 }
 
 func SendCommand(cnf SerialConf, cmd string) (string, error) {

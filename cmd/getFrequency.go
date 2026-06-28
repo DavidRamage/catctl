@@ -60,7 +60,8 @@ to quickly create a Cobra application.`,
 			fmt.Println("Error: ", err)
 			os.Exit(-1)
 		} else {
-			freqFmt, err := catfunctions.FmtFrequencyOut(cmdOut, "mhz", prefixlen, suffixlen)
+			//TODO: make a preference-specific config file
+			freqFmt, err := catfunctions.FmtFrequencyOut(cmdOut, "khz", prefixlen, suffixlen)
 			if err != nil {
 				fmt.Println("Error: ", err)
 				os.Exit(-1)
