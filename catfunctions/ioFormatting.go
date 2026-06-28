@@ -41,9 +41,9 @@ func FmtFrequencyOut(rawFreq string, unit string, prefixLen int, suffixLen int) 
 	if unit == "hz" {
 		return fmt.Sprintf("%d hz", frequency), nil
 	} else if unit == "khz" {
-		return fmt.Sprintf("%f.2 khz", float32(frequency)/1000.0), nil
+		return fmt.Sprintf("%.2f khz", float32(frequency)/1000.0), nil
 	} else if unit == "mhz" {
-		return fmt.Sprintf("%f.5 mhz", float32(frequency)/1000000.0), nil
+		return fmt.Sprintf("%.5f mhz", float32(frequency)/1000000.0), nil
 	} else {
 		return "Error", fmt.Errorf("Invalid frequency unit: %s", unit)
 	}
